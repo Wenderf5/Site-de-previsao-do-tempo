@@ -1,9 +1,16 @@
-const ApiKey = '015d353fec5aba233c320e10ddd7aa86'; 
+const ApiKey = '015d353fec5aba233c320e10ddd7aa86';
 let input = document.getElementById("input");
+
+document.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    let btnlupa = document.getElementById("btnlupa")
+    btnlupa.click();
+  }
+});
 
 document.getElementById("btnlupa").addEventListener("click", function () {
   let erro = document.getElementById("erro");
-  let cidade = input.value; 
+  let cidade = input.value;
 
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${ApiKey}`)
     .then(response => {
@@ -39,14 +46,14 @@ document.getElementById("btnlupa").addEventListener("click", function () {
       console.error('Erro:', error);
     });
 
-    function ax1(){
-      let cidade1 = document.getElementById("cidade1");
-      let bloco2 = document.getElementById("bloco2");
-      let imgprincipal = document.getElementById("imgprincipal");
+  function ax1() {
+    let cidade1 = document.getElementById("cidade1");
+    let bloco2 = document.getElementById("bloco2");
+    let imgprincipal = document.getElementById("imgprincipal");
 
-      cidade1.style.display = "flex";
-      bloco2.style.display = "flex";
-      imgprincipal.style.display = "none";
+    cidade1.style.display = "flex";
+    bloco2.style.display = "flex";
+    imgprincipal.style.display = "none";
   }
   ax1()
 });

@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <title>Clima</title>
+    <link rel="stylesheet" href="style/responsivo.css">
+    <title>Clima hoje</title>
 </head>
 <body>
+    <div class="bloco1">
+        <div class="titulo">
+            <img class="imgClima" src="img/icone-clima.png" alt="">
+            <h1>Clima hoje</h1>
+        </div>
+        <div id="bloco3" class="bloco3">
+            <input id="input" class="input" type="text" placeholder="Pesquise por sua cidade">
+            <button id="btnlupa" class="lupa">
+                <img class="img" src="img/search.png" alt="">
+            </button>
+        </div>
+        <p id="erro" class="erro">Desculpe não encontramos sua cidade.</p>
+        <img id="imgprincipal" class="imgprincipal" src="img/estocolmo-outubro-onde-ficar-foto.jpg" alt="">
+        <div id="cidade1" class="cidade"><samp id="cidade"></samp><samp>|</samp><img id="bandeira" src="https://flagsapi.com/codigodopias/flat/32.png"></div>
+        <div id="bloco2" class="bloco2">
+            <div class="clima"><samp id="clima"></samp><samp>|</samp><img class="img" src="img/simbolo-de-graus-celsius-de-temperatura.png" alt=""></div>
+            <div class="umidade"><samp id="umidade"></samp><samp>%</samp><samp>|</samp><img class="img" src="img/umidade.png" alt=""></div>
+            <div class="vento"><samp id="vento"></samp><samp>m/s</samp><samp>|</samp><img class="img" src="img/vento.png" alt=""></div>
+        </div>
+    </div>
     <script src="script/script.js"></script>
 </body>
 </html>

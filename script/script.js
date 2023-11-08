@@ -56,5 +56,52 @@ document.getElementById("btnlupa").addEventListener("click", function () {
     imgprincipal.style.display = "none";
   }
   ax1()
+
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cidade}&appid=${ApiKey}`)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      data.list.forEach(element => {
+        const tempo1 = element.main.temp;
+        console.log(tempo1);
+      });
+
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+    });
 });
+
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Hora', 'clima'],
+    ['0:00', 15],
+    ['3:00', 18],
+    ['6:00', 20],
+    ['9:00', 21],
+    ['12:00', 25],
+    ['15:00', 27],
+    ['18:00', 23],
+    ['21:00', 20],
+    ['24:00', 17],
+  ]);
+
+  var options = {
+    title: '',
+    hAxis: { title: '', titleTextStyle: { color: '#333' } },
+    vAxis: { minValue: 0 },
+    legend: {position: 'none', maxLines: 1},
+    vAxis: {
+      minValue: 0,
+      ticks: []
+    }
+  };
+  
+  var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+}
 

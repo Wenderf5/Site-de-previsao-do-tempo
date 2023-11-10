@@ -99,15 +99,10 @@ if ("geolocation" in navigator) {
     function (position) {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
-
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
     },
     function (error) {
-      console.error(`Erro ao obter a localização: ${error.message}`);
     }
   );
-} else {
-  console.error("Geolocalização não suportada neste navegador");
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -155,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const img1 = document.getElementById("img1");
             img1.src = "img/Nublado.png"
           }
-          console.log(data)
       })
       .catch(error => {
         console.error('Erro na solicitação ao OpenWeatherMap:', error);

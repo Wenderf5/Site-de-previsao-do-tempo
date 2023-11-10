@@ -44,12 +44,38 @@ body{
     font-size: 17px;
 }
 .bloco2{
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 330px;
-    height: 50px;
+    width: 32%;
+    height: 200px;
     flex-wrap: wrap;
+    flex-direction: column;
+}
+.bloco4{
+    display: flex;
+    width: 330px;
+    height: 200px;
+}
+.img1{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    width: 68%;
+    height: 200px;
+}
+.img2{
+    width: 150px;
+    height: 150px;
+}
+.texto1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 30px;
 }
 .clima{
     display: flex;
@@ -81,7 +107,7 @@ body{
     height: 30px;
 }
 .cidade{
-    display: none;
+    display: flex;
     align-items: center;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -112,38 +138,9 @@ body{
     margin-bottom: 20px;
 }
 .imgprincipal{
+    display: none;
     margin-top: 40px;
     width: 70%;
     height: 30%;
     border-radius: 10px;
-}
-.graficoClima{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 70px;
-    width: 90%;
-    height: 100px;
-}
-.segunda{
-    border-radius: 7px;
-    color: #2a2a2a;
-    font-size: 15px;
-    font-family: 'Raleway', sans-serif;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50px;
-    height: 120px;
-    border: 1px rgb(52, 51, 51) solid;
-}
-.imgClima1{
-    width: 13px;
-    height: 13px;
-}
-.graus1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

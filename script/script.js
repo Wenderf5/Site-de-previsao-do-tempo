@@ -90,71 +90,68 @@ document.getElementById("btnlupa").addEventListener("click", function () {
   ax1()
 });
 
+document.addEventListener("DOMContentLoaded", function () {{
 
-let latitude;
-let longitude;
+    let latitude;
+    let longitude;
 
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-    },
-    function (error) {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+
+          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${ApiKey}`)
+            .then(response => response.json())
+            .then(data => {
+              let clima = document.getElementById("clima");
+              let umidade = document.getElementById("umidade");
+              let vento = document.getElementById("vento");
+              let cidade1 = document.getElementById("cidade");
+              let climaKelvin = data.main.temp;
+              let climaKelvin1 = parseInt(climaKelvin);
+              const temperaturaCelsius = climaKelvin1 - 273;
+              const nuvens = data.weather[0].main;
+
+              cidade1.innerHTML = data.name;
+              clima.innerHTML = temperaturaCelsius;
+              umidade.innerHTML = data.main.humidity;
+              vento.innerHTML = data.wind.speed;
+              codigoPais = data.sys.country;
+              bandeira.src = `https://flagsapi.com/${codigoPais}/flat/32.png`;
+
+              if (nuvens == "Clear") {
+                const texto1 = document.getElementById("texto1");
+                texto1.innerHTML = "Ensolarado"
+              }
+              if (nuvens == "Rain") {
+                const texto1 = document.getElementById("texto1");
+                texto1.innerHTML = "Chuvoso"
+              }
+              if (nuvens == "Clouds") {
+                const texto1 = document.getElementById("texto1");
+                texto1.innerHTML = "Nublado"
+              }
+              if (nuvens == "Clear") {
+                const img1 = document.getElementById("img1");
+                img1.src = "img/Ensolarado.png"
+              }
+              if (nuvens == "Rain") {
+                const img1 = document.getElementById("img1");
+                img1.src = "img/Chuva.png"
+              }
+              if (nuvens == "Clouds") {
+                const img1 = document.getElementById("img1");
+                img1.src = "img/Nublado.png"
+              }
+            })
+            .catch(error => {
+              console.error('Erro na solicitação ao OpenWeatherMap:', error);
+            });
+        },
+        function (error) {
+        }
+      );
     }
-  );
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  if (latitude !== undefined && longitude !== undefined) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${ApiKey}`)
-      .then(response => response.json())
-      .then(data => {
-          let clima = document.getElementById("clima");
-          let umidade = document.getElementById("umidade");
-          let vento = document.getElementById("vento");
-          let cidade1 = document.getElementById("cidade");
-          let climaKelvin = data.main.temp;
-          let climaKelvin1 = parseInt(climaKelvin);
-          const temperaturaCelsius = climaKelvin1 - 273;
-          const nuvens = data.weather[0].main;
-
-          cidade1.innerHTML = data.name;
-          clima.innerHTML = temperaturaCelsius;
-          umidade.innerHTML = data.main.humidity;
-          vento.innerHTML = data.wind.speed;
-          codigoPais = data.sys.country;
-          bandeira.src = `https://flagsapi.com/${codigoPais}/flat/32.png`;
-
-          if (nuvens == "Clear") {
-            const texto1 = document.getElementById("texto1");
-            texto1.innerHTML = "Ensolarado"
-          }
-          if (nuvens == "Rain") {
-            const texto1 = document.getElementById("texto1");
-            texto1.innerHTML = "Chuvoso"
-          }
-          if (nuvens == "Clouds") {
-            const texto1 = document.getElementById("texto1");
-            texto1.innerHTML = "Nublado"
-          }
-          if (nuvens == "Clear") {
-            const img1 = document.getElementById("img1");
-            img1.src = "img/Ensolarado.png"
-          }
-          if (nuvens == "Rain") {
-            const img1 = document.getElementById("img1");
-            img1.src = "img/Chuva.png"
-          }
-          if (nuvens == "Clouds") {
-            const img1 = document.getElementById("img1");
-            img1.src = "img/Nublado.png"
-          }
-      })
-      .catch(error => {
-        console.error('Erro na solicitação ao OpenWeatherMap:', error);
-      });
-  } else {
-    console.error('Latitude ou longitude não definidas.');
   }
 });
